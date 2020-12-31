@@ -6,10 +6,11 @@ import './App.css';
 function App() {
   const [time, setTime] = useState({s:0, m:0, h:0});
   const [interv, setInterv] = useState();
-  const [startBtnOn, setStartBtnOn] = useState(true);
+  // const [startBtnOn, setStartBtnOn] = useState(true);
+
+  
 
   const start = () => {
-    clearInterval(interv);
     setInterv(setInterval(run, 1000));
   };
 
@@ -34,15 +35,18 @@ function App() {
 
   const reset = () => {
     clearInterval(interv);
-    setInterv('')
-    setTime({s:0, m:0, h:0})
+    setTime({ s: 0, m: 0, h: 0 })
+    updatedS = 0
+    start()
   };
 
   const resume = () => start();
 
   const startBtnClick = () => {
     if (interv) {
-      reset()
+      stop()
+      setTime({ s: 0, m: 0, h: 0 })
+      setInterv('')
     }
     if (!interv) {
       start()

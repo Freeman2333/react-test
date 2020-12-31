@@ -6,9 +6,12 @@ import './App.css';
 function App() {
   const [time, setTime] = useState({s:0, m:0, h:0});
   const [interv, setInterv] = useState();
-  // const [startBtnOn, setStartBtnOn] = useState(true);
+  const [waitBtnOn, setWaitBtnOn] = useState(false);
 
-  
+  const waitBtnClick = () => {
+    setWaitBtnOn(true)
+    stop()
+  }
 
   const start = () => {
     setInterv(setInterval(run, 1000));
@@ -43,13 +46,18 @@ function App() {
   const resume = () => start();
 
   const startBtnClick = () => {
-    if (interv) {
-      stop()
-      setTime({ s: 0, m: 0, h: 0 })
-      setInterv('')
+    if (waitBtnOn) {
+      
     }
-    if (!interv) {
-      start()
+    else {
+      if (interv) {
+        stop()
+        setTime({ s: 0, m: 0, h: 0 })
+        setInterv('')
+      }
+      if (!interv) {
+        start()
+      }
     }
   }
 
@@ -58,7 +66,7 @@ function App() {
      <div className="clock-holder">
           <div className="stopwatch">
                <DisplayComponent time={time}/>
-               <BtnComponent  resume={resume} reset={reset} stop={stop} start={startBtnClick}/>
+          <BtnComponent resume={resume} reset={reset} waitBtnClick={waitBtnClick} start={startBtnClick} />
           </div>
      </div>
     </div>

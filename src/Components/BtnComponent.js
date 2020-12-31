@@ -6,7 +6,7 @@ function BtnComponent(props) {
         <button className="stopwatch-btn stopwatch-btn-gre"
         onClick={props.start}>Start</button> 
         <button className="stopwatch-btn stopwatch-btn-red"
-        onClick={props.stop}>Wait</button>
+        onClick={props.waitBtnClick}>Wait</button>
         <button className="stopwatch-btn stopwatch-btn-yel"
         onClick={props.reset}>Reset</button>
     </div>
